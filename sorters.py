@@ -21,8 +21,6 @@
 
 def bubble_sort(data, index, descending=False):
     '''Sorts using the bubble sort algorithm'''
-    # replace this with your own algorithm (do not use Python's sort)
-    # data.sort(key=lambda t: t[index], reverse=descending)
     for end_cursor in range(len(data) - 1, 0, -1):
         for idx in range(end_cursor):
             if descending and (data[idx][index] < data[idx + 1][index]):
@@ -34,8 +32,6 @@ def bubble_sort(data, index, descending=False):
 
 def insertion_sort(data, index, descending=False):
     '''Sorts using the insertion sort algorithm'''
-    # replace this with your own algorithm (do not use Python's sort)
-    # data.sort(key=lambda t: t[index], reverse=descending)
     for cursor in range(1, len(data)):
         current = data[cursor]
         position = cursor
@@ -55,5 +51,21 @@ def insertion_sort(data, index, descending=False):
 
 def selection_sort(data, index, descending=False):
     '''Sorts using the selection sort algorithm'''
-    # replace this with your own algorithm (do not use Python's sort)
-    data.sort(key=lambda t: t[index], reverse=descending)
+    for cursor in range(len(data) - 1, 0, -1):
+        target_index = 0
+        position = 0
+
+        if descending:
+            while position <= cursor:
+                if data[position][index] < data[target_index][index]:
+                    target_index = position
+                position += 1
+
+        else:
+            while position <= cursor:
+                if data[position][index] > data[target_index][index]:
+                    target_index = position
+                position += 1
+
+        data[cursor], data[target_index] = data[target_index], data[cursor]
+    return data

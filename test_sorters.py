@@ -73,9 +73,8 @@ class SortTestCase(TestCase):
     def test_insertion_sort_asc(self):
         from sorters import insertion_sort
         idx = 1
-        self.debugPrint()
         insertion_sort(self.data, idx)
-        self.debugPrint()
+
         for a, b in self.iterPairs():
             self.assertLessEqual(a[idx], b[idx],
                                  msg='previous {} should be less than current {} at index {}'.format(a, b, idx))
@@ -83,9 +82,17 @@ class SortTestCase(TestCase):
     def test_insertion_sort_desc(self):
         from sorters import insertion_sort
         idx = 1
-        self.debugPrint()
         insertion_sort(self.data, idx, True)
-        self.debugPrint()
+
+        for a, b in self.iterPairs():
+            self.assertGreaterEqual(a[idx], b[idx],
+                                    msg='previous {} should be greater than current {} at index {}'.format(a, b, idx))
+
+    def test_selection_sort_desc(self):
+        from sorters import selection_sort
+        idx = 1
+        selection_sort(self.data, idx, True)
+
         for a, b in self.iterPairs():
             self.assertGreaterEqual(a[idx], b[idx],
                                     msg='previous {} should be greater than current {} at index {}'.format(a, b, idx))
@@ -93,9 +100,8 @@ class SortTestCase(TestCase):
     def test_selection_sort_asc(self):
         from sorters import selection_sort
         idx = 1
-        self.debugPrint()
-        selection_sort(self.data, idx, True)
-        self.debugPrint()
+        selection_sort(self.data, idx)
+
         for a, b in self.iterPairs():
-            self.assertGreaterEqual(a[idx], b[idx],
-                                    msg='previous {} should be greater than current {} at index {}'.format(a, b, idx))
+            self.assertLessEqual(a[idx], b[idx],
+                                 msg='previous {} should be less than current {} at index {}'.format(a, b, idx))
