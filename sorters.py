@@ -35,7 +35,22 @@ def bubble_sort(data, index, descending=False):
 def insertion_sort(data, index, descending=False):
     '''Sorts using the insertion sort algorithm'''
     # replace this with your own algorithm (do not use Python's sort)
-    data.sort(key=lambda t: t[index], reverse=descending)
+    # data.sort(key=lambda t: t[index], reverse=descending)
+    for cursor in range(1, len(data)):
+        current = data[cursor]
+        position = cursor
+
+        if descending:
+            while position > 0 and data[position - 1][index] < current[index]:
+                data[position] = data[position - 1]
+                position -= 1
+        else:
+            while position > 0 and data[position - 1][index] > current[index]:
+                data[position] = data[position - 1]
+                position -= 1
+
+        data[position] = current
+    return data
 
 
 def selection_sort(data, index, descending=False):

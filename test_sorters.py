@@ -52,8 +52,6 @@ class SortTestCase(TestCase):
             self.assertLessEqual(a[idx], b[idx],
                                  msg='previous {} should be less than current {} at index {}'.format(a, b, idx))
 
-    # add at least 5 more methods to the class
-
     def test_bubble_sort_descending(self):
         from sorters import bubble_sort
         idx = 0
@@ -68,6 +66,36 @@ class SortTestCase(TestCase):
         idx = 2
         bubble_sort(self.data, idx, True)
 
+        for a, b in self.iterPairs():
+            self.assertGreaterEqual(a[idx], b[idx],
+                                    msg='previous {} should be greater than current {} at index {}'.format(a, b, idx))
+
+    def test_insertion_sort_asc(self):
+        from sorters import insertion_sort
+        idx = 1
+        self.debugPrint()
+        insertion_sort(self.data, idx)
+        self.debugPrint()
+        for a, b in self.iterPairs():
+            self.assertLessEqual(a[idx], b[idx],
+                                 msg='previous {} should be less than current {} at index {}'.format(a, b, idx))
+
+    def test_insertion_sort_desc(self):
+        from sorters import insertion_sort
+        idx = 1
+        self.debugPrint()
+        insertion_sort(self.data, idx, True)
+        self.debugPrint()
+        for a, b in self.iterPairs():
+            self.assertGreaterEqual(a[idx], b[idx],
+                                    msg='previous {} should be greater than current {} at index {}'.format(a, b, idx))
+
+    def test_selection_sort_asc(self):
+        from sorters import selection_sort
+        idx = 1
+        self.debugPrint()
+        selection_sort(self.data, idx, True)
+        self.debugPrint()
         for a, b in self.iterPairs():
             self.assertGreaterEqual(a[idx], b[idx],
                                     msg='previous {} should be greater than current {} at index {}'.format(a, b, idx))
