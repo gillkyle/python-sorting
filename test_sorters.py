@@ -6,6 +6,7 @@ import random
 # Run with:
 #   python -m unittest test_sorters
 
+
 class SortTestCase(TestCase):
     '''Unit tests for the three sort functions'''
     LETTERS = 'abcdefghijklmnopqrstuvwxyz'
@@ -16,17 +17,18 @@ class SortTestCase(TestCase):
         self.data = []
         for i in range(10):
             self.data.append((
-                ''.join(( random.choice(self.LETTERS) for i in range(10) )), # 10 random letters
-                random.randint(0, 100),                                      # an integer
-                round(random.uniform(0.0, 100.0), 1),                        # a float
+                ''.join((random.choice(self.LETTERS)
+                         for i in range(10))),  # 10 random letters
+                # an integer
+                random.randint(0, 100),
+                # a float
+                round(random.uniform(0.0, 100.0), 1),
             ))
-
 
     def debugPrint(self):
         '''Helper method during debugging the tests'''
         pprint(self.data)
         print('')
-
 
     def iterPairs(self):
         '''
@@ -41,17 +43,31 @@ class SortTestCase(TestCase):
                 yield (last, item)
             last = item
 
-
     def test_bubble_sort_ascending(self):
         from sorters import bubble_sort
         idx = 1
         bubble_sort(self.data, idx)
 
-        self.debugPrint()                   # remove this line - only used while creating the test
         for a, b in self.iterPairs():
-            print('{} < {}'.format(a, b))   # remove this line - only used while creating the test
             self.assertLessEqual(a[idx], b[idx],
-                msg='previous {} should be less than current {} at index {}'.format(a, b, idx))
-
+                                 msg='previous {} should be less than current {} at index {}'.format(a, b, idx))
 
     # add at least 5 more methods to the class
+
+    def test_bubble_sort_descending(self):
+        from sorters import bubble_sort
+        idx = 0
+        bubble_sort(self.data, idx, True)
+
+        for a, b in self.iterPairs():
+            self.assertGreaterEqual(a[idx], b[idx],
+                                    msg='previous {} should be greater than current {} at index {}'.format(a, b, idx))
+
+    def test_bubble_sort_percentage(self):
+        from sorters import bubble_sort
+        idx = 2
+        bubble_sort(self.data, idx, True)
+
+        for a, b in self.iterPairs():
+            self.assertGreaterEqual(a[idx], b[idx],
+                                    msg='previous {} should be greater than current {} at index {}'.format(a, b, idx))

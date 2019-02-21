@@ -56,7 +56,7 @@ def main():
     # WordData objects in the list.
     print()
     print('BY PERCENT:')
-    bubble_sort(data, 2, descending=True)
+    bubble_sort(data, 2, descending=False)
     for wd in data[:50]:
         print(wd)
 
@@ -66,7 +66,7 @@ def main():
     print()
     print('BY COUNT:')
     insertion_sort(data, 1, descending=True)
-    for wd in data[:50]:
+    for wd in data[:5]:
         print(wd)
 
     # Sort the list of WordData objects by alpha order (a-z) using your Selection Sort
@@ -75,7 +75,7 @@ def main():
     print()
     print('BY WORD:')
     selection_sort(data, 0)
-    for wd in data[:50]:
+    for wd in data[:5]:
         print(wd)
 
 

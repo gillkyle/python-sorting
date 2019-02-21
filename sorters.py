@@ -22,7 +22,14 @@
 def bubble_sort(data, index, descending=False):
     '''Sorts using the bubble sort algorithm'''
     # replace this with your own algorithm (do not use Python's sort)
-    data.sort(key=lambda t: t[index], reverse=descending)
+    # data.sort(key=lambda t: t[index], reverse=descending)
+    for end_cursor in range(len(data) - 1, 0, -1):
+        for idx in range(end_cursor):
+            if descending and (data[idx][index] < data[idx + 1][index]):
+                data[idx], data[idx + 1] = data[idx + 1], data[idx]
+            elif not descending and (data[idx][index] > data[idx + 1][index]):
+                data[idx], data[idx + 1] = data[idx + 1], data[idx]
+    return data
 
 
 def insertion_sort(data, index, descending=False):
