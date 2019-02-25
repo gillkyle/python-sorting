@@ -1,5 +1,4 @@
 from unittest import TestCase
-from pprint import pprint
 import random
 
 #
@@ -24,11 +23,6 @@ class SortTestCase(TestCase):
                 # a float
                 round(random.uniform(0.0, 100.0), 1),
             ))
-
-    def debugPrint(self):
-        '''Helper method during debugging the tests'''
-        pprint(self.data)
-        print('')
 
     def iterPairs(self):
         '''

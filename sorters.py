@@ -53,19 +53,16 @@ def selection_sort(data, index, descending=False):
     '''Sorts using the selection sort algorithm'''
     for cursor in range(len(data) - 1, 0, -1):
         target_index = 0
-        position = 0
 
         if descending:
-            while position <= cursor:
+            for position in range(1, cursor + 1):
                 if data[position][index] < data[target_index][index]:
                     target_index = position
-                position += 1
 
         else:
-            while position <= cursor:
+            for position in range(1, cursor + 1):
                 if data[position][index] > data[target_index][index]:
                     target_index = position
-                position += 1
 
         data[cursor], data[target_index] = data[target_index], data[cursor]
     return data
